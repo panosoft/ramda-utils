@@ -2,7 +2,7 @@
   "name": "@panosoft/ramda-utils",
   "version": "0.0.3",
   "description": "Utilities built on top of Ramda",
-  "main": "ramdaUtils.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "node --harmony_arrow_functions test/test.js"
   },
