@@ -1,5 +1,5 @@
 var R = require('ramda');
-var Ru = require('../ramdaUtils');
+var Ru = require('../lib');
 
 // TODO use real testing lib
 
@@ -22,6 +22,12 @@ console.log(Ru.sumProps(R.keys(o), o)); // 6
 // sumColumn
 var o1 = {a:10}, o2 = {a:20}, o3 = {a:30};
 console.log(Ru.sumColumn('a')([o1, o2, o3])); // 60
+// subsetOf
+var s = [1, 2, 3, 4, 5, 6];
+var sub1 = [2, 5, 6]; // is subset of s
+var sub2 = [2, 1, 7]; // is NOT subset of s
+console.log(Ru.subsetOf(s, sub1)); // true
+console.log(Ru.subsetOf(s, sub2)); // false
 // compareProps
 var o = [
 	{
