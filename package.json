@@ -1,6 +1,6 @@
 {
   "name": "ramda-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Utilities built on top of Ramda",
   "main": "ramdaUtils.js",
   "scripts": {
