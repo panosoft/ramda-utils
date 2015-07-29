@@ -1,5 +1,5 @@
 {
-  "name": "ramda-utils",
+  "name": "@panosoft/ramda-utils",
   "version": "0.0.2",
   "description": "Utilities built on top of Ramda",
   "main": "ramdaUtils.js",
