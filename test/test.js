@@ -14,7 +14,7 @@ console.log(R.sum(Ru.rmap(o, R.map(R.prop, ['a', 'b'])))); // 3
 // zipApply
 console.log(Ru.zipApply(R.map(R.prop, ['a', 'b']), R.repeat(o, 2))); // [1, 2]
 // pickValues
-console.log(Ru.pickValues(R.keys(o))(o)); // [1, 2, 3]
+console.log(Ru.pickValues(R.keys(o), o)); // [1, 2, 3]
 // trace
 R.compose(R.identity, Ru.trace('after prop:'), R.prop('a'))(o); 	// after prop: 1
 // sumProps
