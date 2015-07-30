@@ -74,3 +74,7 @@ var o = [
 	}
 ];
 console.dir(R.sort(Ru.compareProps(['-d', '+s', '-n', 'b']), o));
+// matchGroups
+var s = 'abcd abbbd ab___d';
+var r = /ab(.+?)(d)/g;
+console.log(Ru.matchGroups(r, s)); // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
