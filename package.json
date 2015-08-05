@@ -4,7 +4,9 @@
   "description": "Utilities built on top of Ramda",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node --harmony_arrow_functions test/test.js"
+    "test": "node --harmony_arrow_functions test/test.js",
+    "patch": "npm version patch && git push --follow-tags && npm publish",
+    "minor": "npm version minor && git push --follow-tags && npm publish"
   },
   "author": "Charles Scalfani",
   "license": "ISC",
