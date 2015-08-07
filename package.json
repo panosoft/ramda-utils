@@ -1,6 +1,6 @@
 {
   "name": "@panosoft/ramda-utils",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Utilities built on top of Ramda",
   "main": "lib/index.js",
   "scripts": {
