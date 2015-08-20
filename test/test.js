@@ -13,6 +13,8 @@ var o = {
 console.log(R.sum(Ru.rmap(o, R.map(R.prop, ['a', 'b'])))); // 3
 // zipApply
 console.log(Ru.zipApply(R.map(R.prop, ['a', 'b']), R.repeat(o, 2))); // [1, 2]
+// filterObj
+console.log(Ru.filterObj(x => x >= 2, o)); // {b:2, c:3}
 // pickValues
 console.log(Ru.pickValues(R.keys(o), o)); // [1, 2, 3]
 // trace
@@ -28,6 +30,11 @@ var sub1 = [2, 5, 6]; // is subset of s
 var sub2 = [2, 1, 7]; // is NOT subset of s
 console.log(Ru.subsetOf(s, sub1)); // true
 console.log(Ru.subsetOf(s, sub2)); // false
+// complementC
+var lastNameEq = R.propEq('lastName');
+var lastNameNeq = Ru.complementC(lastNameEq);
+console.log(lastNameEq('Smith')({lastName: 'Jones'})); // false
+console.log(lastNameNeq('Smith')({lastName: 'Jones'})); // true
 // compareProps
 var o = [
 	{
@@ -78,3 +85,8 @@ console.dir(R.sort(Ru.compareProps(['-d', '+s', '-n', 'b']), o));
 var s = 'abcd abbbd ab___d';
 var r = /ab(.+?)(d)/g;
 console.log(Ru.matchGroups(r, s)); // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
+//composeA
+Ru.composeA(console.log, R.propEq('lastName'), R.identity)('Smith')({lastName: 'Smith'}); // true
+Ru.composeA(console.log, R.multiply, R.inc)(3)(4); // 16
+Ru.pipeA(R.inc, R.multiply, console.log)(3)(4); // 16
+console.log('Arity: ' + Ru.composeA(console.log, R.multiply, R.inc).length); // Arity: 1
