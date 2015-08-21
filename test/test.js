@@ -33,8 +33,11 @@ console.log(Ru.subsetOf(s, sub2)); // false
 // complementC
 var lastNameEq = R.propEq('lastName');
 var lastNameNeq = Ru.complementC(lastNameEq);
-console.log(lastNameEq('Smith')({lastName: 'Jones'})); // false
-console.log(lastNameNeq('Smith')({lastName: 'Jones'})); // true
+console.log('complementC: ' + lastNameEq('Smith')({lastName: 'Jones'})); // false
+console.log('complementC: ' + lastNameNeq('Smith')({lastName: 'Jones'})); // true
+// emptyC
+var a = ['abc', 'xyz'];
+console.log('emptyC: ' + R.any(Ru.notEmptyC(R.match('123')), a));
 // compareProps
 var o = [
 	{
@@ -85,8 +88,3 @@ console.dir(R.sort(Ru.compareProps(['-d', '+s', '-n', 'b']), o));
 var s = 'abcd abbbd ab___d';
 var r = /ab(.+?)(d)/g;
 console.log(Ru.matchGroups(r, s)); // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
-//composeA
-Ru.composeA(console.log, R.propEq('lastName'), R.identity)('Smith')({lastName: 'Smith'}); // true
-Ru.composeA(console.log, R.multiply, R.inc)(3)(4); // 16
-Ru.pipeA(R.inc, R.multiply, console.log)(3)(4); // 16
-console.log('Arity: ' + Ru.composeA(console.log, R.multiply, R.inc).length); // Arity: 1
