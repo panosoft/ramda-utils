@@ -35,9 +35,12 @@ var lastNameEq = R.propEq('lastName');
 var lastNameNeq = Ru.complementC(lastNameEq);
 console.log('complementC: ' + lastNameEq('Smith')({lastName: 'Jones'})); // false
 console.log('complementC: ' + lastNameNeq('Smith')({lastName: 'Jones'})); // true
-// emptyC
+// isEmptyC & isNotEmptyC
 var a = ['abc', 'xyz'];
-console.log('emptyC: ' + R.any(Ru.notEmptyC(R.match('123')), a));
+console.log('isNotEmptyC: ' + R.any(Ru.isNotEmptyC(R.match('123')), a)); // false
+console.log('isEmptyC: ' + R.all(Ru.isEmptyC(R.match('123')), a)); // true
+console.log('isNotEmptyC: ' + R.any(Ru.isNotEmptyC(R.match('xyz')), a)); // true
+console.log('isEmptyC: ' + R.all(Ru.isEmptyC(R.match('xyz')), a)); // false
 // compareProps
 var o = [
 	{
