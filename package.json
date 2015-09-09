@@ -2,15 +2,22 @@
   "name": "@panosoft/ramda-utils",
   "version": "0.1.8",
   "description": "Utilities built on top of Ramda",
+  "repostory": "panosoft/ramda-utils",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node --harmony_arrow_functions test/test.js",
+    "test": "mocha --harmony_arrow_functions",
     "patch": "npm version patch && git push --follow-tags && npm publish",
     "minor": "npm version minor && git push --follow-tags && npm publish"
   },
   "author": "Charles Scalfani",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "ramda": "^0.17.1"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.3.2",
+    "sinon": "^1.16.1",
+    "sinon-chai": "^2.8.0"
   }
 }
