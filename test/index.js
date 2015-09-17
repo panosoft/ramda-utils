@@ -39,6 +39,18 @@ describe('complementC', function () {
 		expect(Ru.complementC(fn)(null)(false)).to.be.true;
 	});
 });
+describe('defaults', function () {
+	it('set all undefined obj properties to their corresponding values in def', function () {
+		var def = {a: 1, b: 2, c: 3};
+		var obj = {a: 4, b: undefined};
+		var defObj = Ru.defaults(def, obj);
+		expect(defObj).to.be.a('object')
+			.and.have.all.keys(['a','b','c']);
+		expect(defObj.a).to.equal(4);
+		expect(defObj.b).to.equal(2);
+		expect(defObj.c).to.equal(3);
+	});
+});
 describe('filterObj', function () {
 	// sometimes called `where`
 	it('filter object by property value', function () {
