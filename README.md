@@ -127,7 +127,7 @@ Any properties of `obj` that resolve to `undefined` will be replaced by the corr
 __Arguments__
 
 - `def` - An object containing default properties.
-- `def` - An object to default.
+- `obj` - An object to default.
 
 __Example__
 
