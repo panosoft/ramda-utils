@@ -134,7 +134,7 @@ __Example__
 ```js
 var def = {a: 1, b: 2, c: 3};
 var obj = {a: 4, b: undefined};
-var defObj = Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
+Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
 ```
 
 ---
