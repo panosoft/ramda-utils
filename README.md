@@ -25,9 +25,9 @@ var Ru = require('@panosoft/ramda-utils');
 - [`applyTo`](#applyTo)
 - [`compareProps`](#compareProps)
 - [`complementC`](#complementC)
-- [`defaults`](#defaults)
 - [`createIndex`](#createIndex)
 - [`createIndexOpts`](#createIndexOpts)
+- [`defaults`](#defaults)
 - [`filterObj`](#filterObj)
 - [`isEmptyC`](#isEmptyC)
 - [`isNotEmptyC`](#isNotEmptyC)
@@ -119,26 +119,6 @@ Ru.complementC(fn)(null)(false) // true;
 
 ---
 
-<a name="defaults"/>
-### defaults ( def , obj )
-
-Creates a new object with the own properties of `def` merged with the _defined_ own properties of `obj`.
-
-Any properties of `obj` that resolve to `undefined` will be replaced by the corresponding properties in `def` if they exist. Otherwise, properties that resolve to `undefined` in both `obj` and `def` will be omitted in the returned object.
-
-__Arguments__
-
-- `def` - An object containing default properties.
-- `obj` - An object to default.
-
-__Example__
-
-```js
-var def = {a: 1, b: 2, c: 3};
-var obj = {a: 4, b: undefined};
-Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
-```
-
 <a name="createIndex"/>
 ### createIndex ( keys, objs )
 
@@ -224,6 +204,28 @@ createIndexOpts({keyDelimiter: '&'}, ['b', 'c'], indexTestData);
 //        'b&z': [{a: 4, b: 'b', c: 'z'}]
 //    }
 
+```
+
+---
+
+<a name="defaults"/>
+### defaults ( def , obj )
+
+Creates a new object with the own properties of `def` merged with the _defined_ own properties of `obj`.
+
+Any properties of `obj` that resolve to `undefined` will be replaced by the corresponding properties in `def` if they exist. Otherwise, properties that resolve to `undefined` in both `obj` and `def` will be omitted in the returned object.
+
+__Arguments__
+
+- `def` - An object containing default properties.
+- `obj` - An object to default.
+
+__Example__
+
+```js
+var def = {a: 1, b: 2, c: 3};
+var obj = {a: 4, b: undefined};
+Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
 ```
 
 ---
