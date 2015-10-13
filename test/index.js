@@ -1,6 +1,7 @@
 var expect = require('chai')
 	.use(require('sinon-chai'))
 	.expect;
+var assert = require('chai').assert;
 var R = require('ramda');
 var Ru = require('../lib');
 var sinon = require('sinon');
@@ -168,5 +169,43 @@ describe('zipApply', function () {
 		var objs = [{a: 'a'}, {b: 'b'}];
 		var fns = [(obj) => obj.a, (obj) => obj.b];
 		expect(Ru.zipApply(fns, objs)).to.deep.equal(['a', 'b']);
+	});
+});
+
+var indexTestData = [
+	{a: 1, b: 'a', c: 'x'},
+	{a: 2, b: 'b', c: 'y'},
+	{a: 3, b: 'b', c: 'y'},
+	{a: 4, b: 'b', c: 'z'}
+];
+describe('createIndex single key:', function () {
+	it('creates an index for an array of objects', function () {
+		var expectedIndex = {
+			a: [{a: 1, b: 'a', c: 'x'}],
+			b: [
+				{a: 2, b: 'b', c: 'y'},
+				{a: 3, b: 'b', c: 'y'},
+				{a: 4, b: 'b', c: 'z'}
+			]
+		};
+		expect(Ru.createIndex(['b'], indexTestData)).to.deep.equal(expectedIndex);
+	});
+});
+describe('createIndex multi key:', function () {
+	it('creates an index for an array of objects', function () {
+		var expectedIndex = {
+			'a&x': [{a: 1, b: 'a', c: 'x'}],
+			'b&y': [
+				{a: 2, b: 'b', c: 'y'},
+				{a: 3, b: 'b', c: 'y'}
+			],
+			'b&z': [{a: 4, b: 'b', c: 'z'}]
+		};
+		expect(Ru.createIndexOpts({keyDelimiter: '&'}, ['b', 'c'], indexTestData)).to.deep.equal(expectedIndex);
+	});
+});
+describe('createIndexOpts multi key with UNIQUE:', function () {
+	it('creates an index for an array of objects', function () {
+		assert.throws(() => Ru.createIndexOpts({unique: true}, ['b', 'c'], indexTestData), Error, 'Cannot build unique index (index key: b|y)');
 	});
 });

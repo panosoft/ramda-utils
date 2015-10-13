@@ -26,6 +26,8 @@ var Ru = require('@panosoft/ramda-utils');
 - [`compareProps`](#compareProps)
 - [`complementC`](#complementC)
 - [`defaults`](#defaults)
+- [`createIndex`](#createIndex)
+- [`createIndexOpts`](#createIndexOpts)
 - [`filterObj`](#filterObj)
 - [`isEmptyC`](#isEmptyC)
 - [`isNotEmptyC`](#isNotEmptyC)
@@ -135,6 +137,93 @@ __Example__
 var def = {a: 1, b: 2, c: 3};
 var obj = {a: 4, b: undefined};
 Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
+```
+
+<a name="createIndex"/>
+### createIndex ( keys, objs )
+
+Returns an indexed for an array of objects. This is just a partially applied version of [`createIndexOpts`](#createIndexOpts) with default `options`.
+
+__Arguments__
+
+- `keys` - An array of keys to index on. If multiple keys are given then the keys are created with the default delimiter between keys, |. To change this delimiter use [`createIndexOpts`](#createIndexOpts).
+- `objs` - An array of objects to index.
+
+__Example with single key__
+
+```js
+var indexTestData = [
+	{a: 1, b: 'a', c: 'x'},
+	{a: 2, b: 'b', c: 'y'},
+	{a: 3, b: 'b', c: 'y'},
+	{a: 4, b: 'b', c: 'z'}
+];
+createIndex(['b'], indexTestData);
+// 		{
+//			a: [{a: 1, b: 'a', c: 'x'}],
+//			b: [
+//				{a: 2, b: 'b', c: 'y'},
+//				{a: 3, b: 'b', c: 'y'},
+//				{a: 4, b: 'b', c: 'z'}
+//			]
+//		}
+
+```
+
+__Example with composite key__
+
+
+```js
+var indexTestData = [
+	{a: 1, b: 'a', c: 'x'},
+	{a: 2, b: 'b', c: 'y'},
+	{a: 3, b: 'b', c: 'y'},
+	{a: 4, b: 'b', c: 'z'}
+];
+createIndex(['b', 'c'], indexTestData);
+//  {
+//        'a|x': [{a: 1, b: 'a', c: 'x'}],
+//        'b|y': [
+//            {a: 2, b: 'b', c: 'y'},
+//            {a: 3, b: 'b', c: 'y'}
+//        ],
+//        'b|z': [{a: 4, b: 'b', c: 'z'}]
+//    }
+```
+---
+
+<a name="createIndexOpts"/>
+### createIndexOpts ( options, keys, objs )
+
+Returns an indexed for an array of objects with the specified `options`.
+
+__Arguments__
+
+- `options`:
+    - `unique` - (default: `false`) If `true` then if a key is not unique and Exception is thrown.
+    - `keyDelimiter` - (default: `|`) The delimiter used between object values to build the index key. This MUST be a character that is guaranteed to NOT be in the values otherwise the index may not be built properly.
+- `keys` - An array of keys to index on.
+- `objs` - An array of objects to index.
+
+__Examples__
+
+```js
+var indexTestData = [
+	{a: 1, b: 'a', c: 'x'},
+	{a: 2, b: 'b', c: 'y'},
+	{a: 3, b: 'b', c: 'y'},
+	{a: 4, b: 'b', c: 'z'}
+];
+createIndexOpts({keyDelimiter: '&'}, ['b', 'c'], indexTestData);
+//    {
+//        'a&x': [{a: 1, b: 'a', c: 'x'}],
+//        'b&y': [
+//            {a: 2, b: 'b', c: 'y'},
+//            {a: 3, b: 'b', c: 'y'}
+//        ],
+//        'b&z': [{a: 4, b: 'b', c: 'z'}]
+//    }
+
 ```
 
 ---
