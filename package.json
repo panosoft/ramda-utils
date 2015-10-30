@@ -12,7 +12,7 @@
   "author": "Charles Scalfani",
   "license": "MIT",
   "dependencies": {
-    "ramda": "^0.17.1"
+    "ramda": "^0.18.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
