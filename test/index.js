@@ -209,3 +209,14 @@ describe('createIndexOpts multi key with UNIQUE:', function () {
 		assert.throws(() => Ru.createIndexOpts({unique: true}, ['b', 'c'], indexTestData), Error, 'Cannot build unique index (index key: b|y)');
 	});
 });
+describe('sub-string:', function () {
+	it('substring', function () {
+		expect(Ru.substring(1, 2, 'abc')).to.equal('b');
+	});
+	it('substring NO end (null)', function () {
+		expect(Ru.substring(1, null, 'abc')).to.equal('bc');
+	});
+	it('substring NO end (undefined)', function () {
+		expect(Ru.substring(1, undefined, 'abc')).to.equal('bc');
+	});
+});

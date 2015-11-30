@@ -35,6 +35,7 @@ var Ru = require('@panosoft/ramda-utils');
 - [`pickValues`](#pickValues)
 - [`rmap`](#rmap)
 - [`subsetOf`](#subsetOf)
+- [`substring`] (#substring)
 - [`sumProps`](#sumProps)
 - [`sumColumn`](#sumColumn)
 - [`toNumber`](#toNumber)
@@ -370,8 +371,27 @@ __Example__
 var set = [1, 2, 3, 4];
 var sub = [2, 3];
 var notSub = [4, 5];
-Ru.subsetOf(set, sub)     // true;
-Ru.subsetOf(set, notSub)) // false;
+Ru.subsetOf(set, sub);     // true
+Ru.subsetOf(set, notSub)); // false
+```
+
+---
+
+<a name="substring"/>
+### substring ( start , end, str )
+
+Returns the substring of the specified string. This function differs from the standard JavaScript function in the case where `end` is `null`. In that case, end behaves as if it were not specified and will represent the end of the string.
+
+__Arguments__
+
+- `start` - An integer between 0 and the length of the string, specifying the offset into the string of the first character to include in the returned substring.
+- `end` - An integer between 0 and the length of the string, which specifies the offset into the string of the first character not to include in the returned substring. If `null`, then it will extract characters until the end of the string.
+
+__Example__
+
+```js
+substring(1, 2, 'abc');     // 'b'
+substring(1, null, 'abc'); // 'bc'
 ```
 
 ---
@@ -391,7 +411,7 @@ __Example__
 ```js
 var obj = {a: 1, b: 2, c: 4};
 var keys = ['b', 'c'];
-Ru.sumProps(keys, obj)  // 6
+Ru.sumProps(keys, obj);  // 6
 ```
 
 ---
