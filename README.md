@@ -46,7 +46,7 @@ var Ru = require('@panosoft/ramda-utils');
 
 ---
 
-<a name="applyTo"/>
+<a name="applyTo"></a>
 ### applyTo ( obj , fn )
 
 Apply an object to a function
@@ -66,7 +66,7 @@ Ru.applyTo(obj, fn) // 'a';
 
 ---
 
-<a name="compareProps"/>
+<a name="compareProps"></a>
 ### compareProps ( props , a , b )
 
 Returns a curried comparator function that can be used with `R.sort`. Supports any number of sort orders (i.e. property1 ascending, property 2 descending, etc.). It also supports type based sorting (i.e. recognizes `Date`, `Number`, etc. and sorts them appropriately).
@@ -101,7 +101,7 @@ R.sort(Ru.compareProps(props), list);
 ```
 ---
 
-<a name="complementC"/>
+<a name="complementC"></a>
 ### complementC ( fn )
 
 Returns a curried complement.
@@ -120,7 +120,7 @@ Ru.complementC(fn)(null)(false) // true;
 
 ---
 
-<a name="createIndex"/>
+<a name="createIndex"></a>
 ### createIndex ( keys, objs )
 
 Returns an indexed for an array of objects. This is just a partially applied version of [`createIndexOpts`](#createIndexOpts) with default `options`.
@@ -173,7 +173,7 @@ createIndex(['b', 'c'], indexTestData);
 ```
 ---
 
-<a name="createIndexOpts"/>
+<a name="createIndexOpts"></a>
 ### createIndexOpts ( options, keys, objs )
 
 Returns an indexed for an array of objects with the specified `options`.
@@ -209,7 +209,7 @@ createIndexOpts({keyDelimiter: '&'}, ['b', 'c'], indexTestData);
 
 ---
 
-<a name="defaults"/>
+<a name="defaults"></a>
 ### defaults ( def , obj )
 
 Creates a new object with the own properties of `def` merged with the _defined_ own properties of `obj`.
@@ -231,7 +231,7 @@ Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
 
 ---
 
-<a name="filterObj"/>
+<a name="filterObj"></a>
 ### filterObj ( pred , obj )
 
 Filters an object by property.
@@ -251,7 +251,7 @@ Ru.filterObj(pred, obj) // {a: true, c: true}
 
 ---
 
-<a name="isEmptyC"/>
+<a name="isEmptyC"></a>
 ### isEmptyC ( fn )
 
 Returns a curried function that tests whether the original function returns a list with zero elements when called.
@@ -273,7 +273,7 @@ Ru.isEmptyC(fn)('')('') // true;
 
 ---
 
-<a name="isNotEmptyC"/>
+<a name="isNotEmptyC"></a>
 ### isNotEmptyC ( fn )
 
 Returns a curried function that tests whether the original function returns a list with elements when called.
@@ -295,7 +295,7 @@ Ru.isNotEmptyC(fn)('')('')    // false;
 
 ---
 
-<a name="matchGroups"/>
+<a name="matchGroups"></a>
 ### matchGroups ( reg , str )
 
 Applies a Regular Expression to a String and returns the matched groups as an array of arrays.
@@ -315,7 +315,7 @@ Ru.matchGroups(reg, str) // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
 
 ---
 
-<a name="pickValues"/>
+<a name="pickValues"></a>
 ### pickValues ( keys , obj )
 
 Picks values from an object using the specified keys. Returns a new array.
@@ -335,7 +335,7 @@ Ru.pickValues(keys, obj) // [false, true]
 
 ---
 
-<a name="rmap"/>
+<a name="rmap"></a>
 ### rmap ( obj , fns )
 
 Maps an array of functions to their return values by applying an object to each.
@@ -355,7 +355,7 @@ Ru.rmap(obj, fns) // ['a', 'b']
 
 ---
 
-<a name="subsetOf"/>
+<a name="subsetOf"></a>
 ### subsetOf ( set , sub )
 
 Tests if an array is a subset of another.
@@ -377,7 +377,7 @@ Ru.subsetOf(set, notSub)); // false
 
 ---
 
-<a name="substring"/>
+<a name="substring"></a>
 ### substring ( start , end, str )
 
 Returns the substring of the specified string. This function differs from the standard JavaScript function in the case where `end` is `null`. In that case, end behaves as if it were not specified and will represent the end of the string.
@@ -396,7 +396,7 @@ substring(1, null, 'abc'); // 'bc'
 
 ---
 
-<a name="sumProps"/>
+<a name="sumProps"></a>
 ### sumProps ( keys , obj )
 
 Returns the sum of the specified properties.
@@ -416,7 +416,7 @@ Ru.sumProps(keys, obj);  // 6
 
 ---
 
-<a name="sumColumn"/>
+<a name="sumColumn"></a>
 ### sumColumn ( key , objs )
 
 Return the sum of the specified property across an array of objects.
@@ -436,7 +436,7 @@ Ru.sumColumn(key, objs)  // 7
 
 ---
 
-<a name="toNumber"/>
+<a name="toNumber"></a>
 ### toNumber ( x )
 
 Converts a value to a `Number`.
@@ -453,7 +453,7 @@ Ru.toNumber(str) // 1
 
 ---
 
-<a name="toString"/>
+<a name="toString"></a>
 ### toString ( x )
 
 Converts a value to a `String`.
@@ -471,7 +471,7 @@ Ru.toString(num) // '1'
 
 ---
 
-<a name="toDate"/>
+<a name="toDate"></a>
 ### toDate ( x )
 
 Convert a value to a `Date`.
@@ -489,7 +489,7 @@ Ru.toDate(str)  // new Date(str)
 
 ---
 
-<a name="trace"/>
+<a name="trace"></a>
 ### trace ( msg , x )
 
 Logs a message and value and then returns the value.
@@ -511,7 +511,7 @@ console.log(result);  // 3
 
 ---
 
-<a name="zipApply"/>
+<a name="zipApply"></a>
 ### zipApply ( fns , objs )
 
 Zips an array of functions and an array of objects into an array of values produced by applying each object to its respective function.
