@@ -35,7 +35,7 @@ var Ru = require('@panosoft/ramda-utils');
 - [`pickValues`](#pickValues)
 - [`rmap`](#rmap)
 - [`subsetOf`](#subsetOf)
-- [`substring`] (#substring)
+- [`substring`](#substring)
 - [`sumProps`](#sumProps)
 - [`sumColumn`](#sumColumn)
 - [`toNumber`](#toNumber)
