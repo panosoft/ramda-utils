@@ -28,10 +28,14 @@ var Ru = require('@panosoft/ramda-utils');
 - [`createIndex`](#createIndex)
 - [`createIndexOpts`](#createIndexOpts)
 - [`defaults`](#defaults)
+- [`defaultsR`](#defaultsR)
 - [`filterObj`](#filterObj)
+- [`filterObjR`](#filterObjR)
 - [`isEmptyC`](#isEmptyC)
 - [`isNotEmptyC`](#isNotEmptyC)
 - [`matchGroups`](#matchGroups)
+- [`mergeAllR`](#mergeAllR)
+- [`mergeR`](#mergeR)
 - [`pickValues`](#pickValues)
 - [`rmap`](#rmap)
 - [`subsetOf`](#subsetOf)
@@ -231,6 +235,26 @@ Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
 
 ---
 
+<a name="defaultsR"></a>
+### defaultsR ( def , obj )
+
+RECURSIVE version of [`defaults`](#defaults).
+
+__Arguments__
+
+- `def` - An object containing default properties.
+- `obj` - An object to default.
+
+__Example__
+
+```js
+var def = {a: 1, b: 2, c: 3, o: {x: 1, z: 3}};
+var obj = {a: 4, b: undefined, o: {x: undefined, y: 2}};
+Ru.defaultsR(def, obj); // {a: 4, b: 2, c: 3, o: {x: 1, y: 2, z: 3}}
+```
+
+---
+
 <a name="filterObj"></a>
 ### filterObj ( pred , obj )
 
@@ -247,6 +271,26 @@ __Example__
 var obj = {a: true, b: false, c: true};
 var pred = (x) => x;
 Ru.filterObj(pred, obj) // {a: true, c: true}
+```
+
+---
+
+<a name="filterObjR"></a>
+### filterObjR ( pred , obj )
+
+RECURSIVE version of [`filterObj`](#filterObj). NOTE: `pred` is NOT applied to object keys which means all object keys (recursively) will be included.
+
+__Arguments__
+
+- `pred` - A function used to test each object property. It is called with the property `value` and should return a `Boolean`.
+- `obj` - An object to filter.
+
+__Example__
+
+```js
+var obj = {a: true, b: false, c: true, o: {a: true, b: false}};
+var pred = (x) => x;
+Ru.filterObjR(pred, obj) // {a: true, c: true, o: {a: true}}
 ```
 
 ---
@@ -311,6 +355,47 @@ __Example__
 var str = 'abcd abbbd ab___d';
 var reg = /ab(.+?)(d)/g;
 Ru.matchGroups(reg, str) // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
+```
+
+---
+
+<a name="mergeAllR"></a>
+### mergeAllR ( objs )
+
+RECURSIVE version of R.mergeAll (see Ramda).
+
+__Arguments__
+
+- `objs` - Array of objects to merge.
+
+__Example__
+
+```js
+var a = {a: 1, o: {a: 1, x: 1}};
+var b = {b: 2, o: {b: 2, x: 2}};
+var c = {c: 3, o: {c: 3, x: 3}};
+R.mergeAllR([a, b, c]); // {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3}}
+```
+
+---
+
+<a name="mergeR"></a>
+### mergeR ( a , b )
+
+RECURSIVE version of R.merge (see Ramda).
+
+__Arguments__
+
+- `a` - First object to merge.
+- `b` - Second object to merge with first.
+
+__Example__
+
+```js
+var a = {a: 1, b: 2, d: 4, o: {x: 1, z: 3}};
+var b = {a: 10, c: 30, o: {x: 10, y: 20}};
+Ru.mergeR(a, b) // {a: 10, b: 2, c: 30, d: 4, o: {x: 10, y: 20, z: 3}}
+Ru.mergeR(b, a) // {a: 1, b: 2, c: 30, d: 4, o: {x: 1, y: 20, z: 3}}
 ```
 
 ---

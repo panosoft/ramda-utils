@@ -12,6 +12,7 @@
   "author": "Charles Scalfani",
   "license": "MIT",
   "dependencies": {
+    "is_js": "^0.7.4",
     "ramda": "^0.18.0"
   },
   "devDependencies": {

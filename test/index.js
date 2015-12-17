@@ -52,12 +52,27 @@ describe('defaults', function () {
 		expect(defObj.c).to.equal(3);
 	});
 });
+describe('defaultsR', function () {
+	it('Recursively set all undefined obj properties to their corresponding values in def', function () {
+		var def = {a: 1, b: 2, c: 3, o: {x: 1, z: 3}};
+		var obj = {a: 4, b: undefined, o: {x: undefined, y: 2}};
+		expect(Ru.defaultsR(def, obj)).to.deep.equal({a: 4, b: 2, c: 3, o: {x: 1, y: 2, z: 3}});
+	});
+});
 describe('filterObj', function () {
 	// sometimes called `where`
 	it('filter object by property value', function () {
 		var obj = {a: true, b: false, c: true};
-		var pred = (x) => x;
+		var pred = x => x;
 		expect(Ru.filterObj(pred, obj)).to.deep.equal({a: true, c: true});
+	});
+});
+describe('filterObjR', function () {
+	// sometimes called `where`
+	it('Recursively filter object by property value', function () {
+		var obj = {a: true, b: false, c: true, o: {a: true, b: false}};
+		var pred = x => x;
+		expect(Ru.filterObjR(pred, obj)).to.deep.equal({a: true, c: true, o: {a: true}});
 	});
 });
 describe('isEmptyC', function () {
@@ -218,5 +233,76 @@ describe('sub-string:', function () {
 	});
 	it('substring NO end (undefined)', function () {
 		expect(Ru.substring(1, undefined, 'abc')).to.equal('bc');
+	});
+});
+describe('Recursively Merge:', function() {
+	it('mergeR', function() {
+		var a = {
+			r: 1,
+			s: 2,
+			t: 3,
+			u: 4,
+			v: 5,
+			o: {
+				a: 1,
+				b: 2,
+				c: 3,
+				e: 5,
+				o: {
+					x: 1,
+					y: 2,
+					z: 3,
+					bb: 50
+				}
+			}
+		};
+		var b = {
+			r: 10,
+			s: 20,
+			t: 30,
+			o: {
+				a: 10,
+				b: 20,
+				c: 30,
+				d: 40,
+				o: {
+					x: 10,
+					y: 20,
+					z: 30,
+					aa: 40
+				}
+			}
+		};
+		var result = {
+			r: 10,
+			s: 20,
+			t: 30,
+			u: 4,
+			v: 5,
+			o: {
+				a: 10,
+				b: 20,
+				c: 30,
+				d: 40,
+				e: 5,
+				o: {
+					x: 10,
+					y: 20,
+					z: 30,
+					aa: 40,
+					bb: 50
+				}
+			}
+		};
+		expect(Ru.mergeR(a, b)).to.deep.equal(result);
+	});
+});
+describe('Recursive Merge All:', function() {
+	it('mergeAllR', function() {
+		var a = {a: 1, o: {a: 1, x: 1}};
+		var b = {b: 2, o: {b: 2, x: 2}};
+		var c = {c: 3, o: {c: 3, x: 3}};
+		var result = {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3}}
+		expect(Ru.mergeAllR([a, b, c])).to.deep.equal(result);
 	});
 });
