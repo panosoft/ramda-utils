@@ -238,7 +238,7 @@ Ru.defaults(def, obj); // { a: 4, b: 2, c: 3 }
 <a name="defaultsR"></a>
 ### defaultsR ( def , obj )
 
-RECURSIVE version of [`defaults`](#defaults).
+RECURSIVE version of [`defaults`](#defaults). NOTE: When comparing keys, recursion only occurs if both keys are objects, otherwise a simple non-recursive replacement occurs.
 
 __Arguments__
 
@@ -362,7 +362,7 @@ Ru.matchGroups(reg, str) // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
 <a name="mergeAllR"></a>
 ### mergeAllR ( objs )
 
-RECURSIVE version of R.mergeAll (see Ramda).
+RECURSIVE version of R.mergeAll (see Ramda).  NOTE: When comparing keys, recursion only occurs if both keys are objects, otherwise a simple non-recursive replacement occurs.
 
 __Arguments__
 
@@ -375,6 +375,17 @@ var a = {a: 1, o: {a: 1, x: 1}};
 var b = {b: 2, o: {b: 2, x: 2}};
 var c = {c: 3, o: {c: 3, x: 3}};
 R.mergeAllR([a, b, c]); // {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3}}
+
+var a = {oo: 'a'}};
+var b = {oo: {y: 2}}; // this replaces a non-object with {y: 2}
+var c = {oo: {x: 1}};
+R.mergeAllR([a, b, c]); // {oo: {x: 1, y: 2}}
+
+var a = {oo: {y: 2}};
+var b = {oo: 'a'}}; // this replaces the object {y: 2} with a non-object
+var c = {oo: {x: 1}};
+R.mergeAllR([a, b, c]); // {oo: {x: 1}}
+
 ```
 
 ---
@@ -382,7 +393,7 @@ R.mergeAllR([a, b, c]); // {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3}}
 <a name="mergeR"></a>
 ### mergeR ( a , b )
 
-RECURSIVE version of R.merge (see Ramda).
+RECURSIVE version of R.merge (see Ramda). NOTE: When comparing keys, recursion only occurs if both keys are objects, otherwise a simple non-recursive replacement occurs.
 
 __Arguments__
 

@@ -305,4 +305,18 @@ describe('Recursive Merge All:', function() {
 		var result = {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3}}
 		expect(Ru.mergeAllR([a, b, c])).to.deep.equal(result);
 	});
+	it('mergeAllR non-object/object', function() {
+		var a = {a: 1, o: {a: 1, x: 1, oo: 'a'}};
+		var b = {b: 2, o: {b: 2, x: 2, oo: {y: 2}}};
+		var c = {c: 3, o: {c: 3, x: 3, oo: {x: 1}}};
+		var result = {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3, oo: {x: 1, y: 2}}}
+		expect(Ru.mergeAllR([a, b, c])).to.deep.equal(result);
+	});
+	it('mergeAllR object/non-object', function() {
+		var a = {a: 1, o: {a: 1, x: 1, oo: {y: 2}}};
+		var b = {b: 2, o: {b: 2, x: 2, oo: 'a'}};
+		var c = {c: 3, o: {c: 3, x: 3, oo: {x: 1}}};
+		var result = {a: 1, b:2, c: 3, o: {a: 1, b: 2, c: 3, x: 3, oo: {x: 1}}}
+		expect(Ru.mergeAllR([a, b, c])).to.deep.equal(result);
+	});
 });
