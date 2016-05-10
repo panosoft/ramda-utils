@@ -105,7 +105,10 @@ describe('matchGroups', function () {
 	});
 	it('support non-global RegExp', function () {
 		expect(Ru.matchGroups(/(ab)/, str)).to.deep.equal([ ['ab'] ]);
-		expect(Ru.matchGroups(/ab/, str)).to.deep.equal([ [] ]);
+		var match = Ru.matchGroups(/ab/, str);
+		expect(match).to.deep.equal([ [] ]);
+		expect(match.length).to.equal(1);
+		expect(match[0].length).to.equal(0);
 	});
 });
 describe('pickValues', function () {
@@ -233,6 +236,14 @@ describe('sub-string:', function () {
 	});
 	it('substring NO end (undefined)', function () {
 		expect(Ru.substring(1, undefined, 'abc')).to.equal('bc');
+	});
+});
+describe('Path:', () => {
+	it('common path', () => {
+		expect(Ru.pathCommon('/', 'a/b', {a: {b: 1}})).to.equal(1);
+	});
+	it('object path', () => {
+		expect(Ru.path('a.b', {a: {b: 1}})).to.equal(1);
 	});
 });
 describe('Recursively Merge:', function() {

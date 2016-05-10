@@ -2,11 +2,7 @@
 
 Utilities built on top of Ramda.
 
-[![npm version](https://img.shields.io/npm/v/@panosoft/ramda-utils.svg)](https://www.npmjs.com/package/@panosoft/ramda-utils)
-[![npm license](https://img.shields.io/npm/l/@panosoft/ramda-utils.svg)](https://www.npmjs.com/package/@panosoft/ramda-utils)
 [![Travis](https://img.shields.io/travis/panosoft/ramda-utils.svg)](https://travis-ci.org/panosoft/ramda-utils)
-[![David](https://img.shields.io/david/panosoft/ramda-utils.svg)](https://david-dm.org/panosoft/ramda-utils)
-[![npm downloads](https://img.shields.io/npm/dm/@panosoft/ramda-utils.svg)](https://www.npmjs.com/package/@panosoft/ramda-utils)
 
 ## Installation
 
@@ -36,6 +32,8 @@ var Ru = require('@panosoft/ramda-utils');
 - [`matchGroups`](#matchGroups)
 - [`mergeAllR`](#mergeAllR)
 - [`mergeR`](#mergeR)
+- [`path`](#path)
+- [`pathCommon`](#pathCommon)
 - [`pickValues`](#pickValues)
 - [`rmap`](#rmap)
 - [`subsetOf`](#subsetOf)
@@ -342,7 +340,7 @@ Ru.isNotEmptyC(fn)('')('')    // false;
 <a name="matchGroups"></a>
 ### matchGroups ( reg , str )
 
-Applies a Regular Expression to a String and returns the matched groups as an array of arrays.
+Applies a Regular Expression to a String and returns the matched groups as an array of arrays. Returns an empty array, [], if no match.
 
 __Arguments__
 
@@ -354,7 +352,9 @@ __Example__
 ```js
 var str = 'abcd abbbd ab___d';
 var reg = /ab(.+?)(d)/g;
-Ru.matchGroups(reg, str) // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
+Ru.matchGroups(reg, str); // [ [ 'c', 'd'], [ 'bb', 'd' ], ['___', 'd'] ]
+
+Ru.matchGroups(/xyz/, str); // []
 ```
 
 ---
@@ -407,6 +407,43 @@ var a = {a: 1, b: 2, d: 4, o: {x: 1, z: 3}};
 var b = {a: 10, c: 30, o: {x: 10, y: 20}};
 Ru.mergeR(a, b) // {a: 10, b: 2, c: 30, d: 4, o: {x: 10, y: 20, z: 3}}
 Ru.mergeR(b, a) // {a: 1, b: 2, c: 30, d: 4, o: {x: 1, y: 20, z: 3}}
+```
+
+---
+
+<a name="path"></a>
+### path ( path , obj )
+
+Retrieve a value at a given path using the standard `.` path delimiter.
+
+__Arguments__
+
+- `path` - A path to a value within an object.
+- `obj` - An object to retrieve value from.
+
+__Example__
+
+```js
+Ru.path('a.b', {a: {b: 1}}); // returns 1
+```
+
+---
+
+<a name="pathCommon"></a>
+### pathCommon ( delimiter, path , obj )
+
+Retrieve a value at a given path with the specified path `delimiter`.
+
+__Arguments__
+
+- `delimiter` - A path delimiter.
+- `path` - A path to a value within an object.
+- `obj` - An object to retrieve value from.
+
+__Example__
+
+```js
+Ru.pathCommon('/', 'a/b', {a: {b: 1}}); // returns 1
 ```
 
 ---
