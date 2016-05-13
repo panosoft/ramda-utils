@@ -110,6 +110,9 @@ describe('matchGroups', function () {
 		expect(match.length).to.equal(1);
 		expect(match[0].length).to.equal(0);
 	});
+	it('infinite loop', function() {
+		expect(Ru.matchGroups(/\s*/g, 'xxx')).to.deep.equal([ [] ]);
+	});
 });
 describe('pickValues', function () {
 	it('pick values from an object using specified keys', function () {
