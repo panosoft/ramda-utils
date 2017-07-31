@@ -3,11 +3,13 @@
   "version": "0.2.8",
   "description": "Utilities built on top of Ramda.",
   "repository": "panosoft/ramda-utils",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha",
     "patch": "npm version patch && git push --follow-tags && npm publish",
-    "minor": "npm version minor && git push --follow-tags && npm publish"
+    "minor": "npm version minor && git push --follow-tags && npm publish",
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist",
+    "prepublish": "npm run build"
   },
   "author": "Charles Scalfani",
   "license": "MIT",
@@ -16,6 +18,8 @@
     "ramda": "^0.18.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
     "chai": "^3.2.0",
     "mocha": "^2.3.2",
     "sinon": "^1.16.1",

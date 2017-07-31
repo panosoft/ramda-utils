@@ -3,7 +3,7 @@ var expect = require('chai')
 	.expect;
 var assert = require('chai').assert;
 var R = require('ramda');
-var Ru = require('../lib');
+var Ru = require('../src');
 var sinon = require('sinon');
 
 describe('applyTo', function () {
